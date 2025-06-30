@@ -17,12 +17,16 @@ import (
 )
 
 func init() {
-	// Load file .env saat program dijalankan
-	err := godotenv.Load()
-	if err != nil {
-		fmt.Println("Gagal memuat file .env")
+	if _, err := os.Stat(".env"); err == nil {
+		err := godotenv.Load() 
+		if err != nil {
+			fmt.Println("Error loading .env file")
+		}
+	} else {
+		fmt.Println("File .env dimuat (local)")
 	}
 }
+
 
 // @title TES SWAGGER PEMROGRAMAN III
 // @version 1.0
